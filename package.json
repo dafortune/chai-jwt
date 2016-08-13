@@ -1,0 +1,27 @@
+{
+  "name": "chai-jwt",
+  "version": "1.0.0",
+  "description": "JWT helpers for chai",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dafortune/chai-jwt.git"
+  },
+  "keywords": [
+    "jwt",
+    "jsonwebtoken"
+  ],
+  "author": "Damian Andres Fortuna",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dafortune/chai-jwt/issues"
+  },
+  "homepage": "https://github.com/dafortune/chai-jwt#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  }
+}
