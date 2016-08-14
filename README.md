@@ -59,6 +59,6 @@ Example
 ```javascript
   const validJWT = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzY29wZSI6InVwZGF0ZTpzb21ldGhpbmciLCJleHAiOjE0NzA3NjE3ODEsImlhdCI6MTQ3MDc2MDc5M30.1b4RC22Kpx4X4GWXU-Wgsk4IbeRGVD7tNW-tM-LzkVE';
 
-  expect(validJWT).to.be.have.property('scope'); // Doesn't fail
-  expect(validJWT).to.be.have.property('other'); // fails
+  expect(validJWT).to.be.a.jwt.and.have.claim('scope'); // Doesn't fail
+  expect(validJWT).to.be.a.jwt.and.have.claim('other'); // fails
 ```
