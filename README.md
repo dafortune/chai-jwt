@@ -23,6 +23,7 @@ chai.use(chaiJWT);
 ### .jwt
 Asserts that the provided string has a valid format that
 can be parsed as JWT. *Does not check signature or the provided fields.*
+If succeed, it changes the context to the decoded token.
 
 Example
 ```javascript
@@ -31,6 +32,12 @@ Example
 
   expect(validJWT).to.be.a.jwt; // Doesn't fail
   expect(invalidJWT).to.be.a.jwt; // fails
+
+  expect(validJWT).to.be.a.jwt.and.eql({
+    "scope": "update:something",
+    "exp": 1470761781,
+    "iat": 1470760793
+  });
 ```
 
 ### .signedWith(secret)
@@ -45,7 +52,7 @@ Example
 ```
 
 ### .claim(key, [value])
-Asserts that the provided token has a given claim. If value is provided
+Alias of `.property` for JWTs. Asserts that the provided token has a given claim. If value is provided
 it will also assert the claim value using strict equality.
 
 Example

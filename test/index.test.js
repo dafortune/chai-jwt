@@ -18,6 +18,16 @@ describe('chai-jwt', function() {
             expect(validJWT).to.be.a.jwt
           }).not.to.throw();
         });
+
+        it('changes context', function() {
+          expect(function() {
+            expect(validJWT).to.be.a.jwt.and.eql({
+              "scope": "update:something",
+              "exp": 1470761781,
+              "iat": 1470760793
+            });
+          }).not.to.throw();
+        });
       });
 
       describe('when negated', function() {
@@ -88,13 +98,13 @@ describe('chai-jwt', function() {
     });
   });
 
-  describe('.claim', function() {
+  describe('jwt.property', function() {
 
     describe('when token has claim', function() {
       describe('and it is negated', function() {
         it('fails', function() {
           expect(function() {
-            expect(validJWT).not.to.have.claim('scope');
+            expect(validJWT).to.be.a.jwt.and.not.have.claim('scope');
           }).to.throw();
         });
       });
@@ -102,7 +112,7 @@ describe('chai-jwt', function() {
       describe('and it is not negated', function() {
         it('does not fails', function() {
           expect(function() {
-            expect(validJWT).to.have.claim('scope');
+            expect(validJWT).to.be.a.jwt.and.have.claim('scope');
           }).not.to.throw();
         });
       });
@@ -112,7 +122,7 @@ describe('chai-jwt', function() {
       describe('and it is negated', function() {
         it('does not fail', function() {
           expect(function() {
-            expect(validJWT).not.to.have.claim('other');
+            expect(validJWT).to.be.a.jwt.and.not.have.claim('other');
           }).not.to.throw();
         });
       });
@@ -120,7 +130,7 @@ describe('chai-jwt', function() {
       describe('and it is not negated', function() {
         it('fails', function() {
           expect(function() {
-            expect(validJWT).to.have.claim('other');
+            expect(validJWT).to.be.a.jwt.and.have.claim('other');
           }).to.throw();
         });
       });
@@ -130,7 +140,7 @@ describe('chai-jwt', function() {
       describe('and it is negated', function() {
         it('fails', function() {
           expect(function() {
-            expect(validJWT).not.to.have.claim('scope', 'update:something');
+            expect(validJWT).to.be.a.jwt.and.not.have.claim('scope', 'update:something');
           }).to.throw();
         });
       });
@@ -138,7 +148,7 @@ describe('chai-jwt', function() {
       describe('and it is not negated', function() {
         it('does not fails', function() {
           expect(function() {
-            expect(validJWT).to.have.claim('scope', 'update:something');
+            expect(validJWT).to.be.a.jwt.and.have.claim('scope', 'update:something');
           }).not.to.throw();
         });
       });
@@ -148,7 +158,7 @@ describe('chai-jwt', function() {
       describe('and it is negated', function() {
         it('does not fail', function() {
           expect(function() {
-            expect(validJWT).not.to.have.claim('scope', 'update1:something');
+            expect(validJWT).to.be.a.jwt.and.not.have.claim('scope', 'update1:something');
           }).not.to.throw();
         });
       });
@@ -156,7 +166,7 @@ describe('chai-jwt', function() {
       describe('and it is not negated', function() {
         it('fails', function() {
           expect(function() {
-            expect(validJWT).to.have.claim('scope', 'update1:something');
+            expect(validJWT).to.be.a.jwt.and.have.claim('scope', 'update1:something');
           }).to.throw();
         });
       });

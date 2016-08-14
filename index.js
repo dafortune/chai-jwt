@@ -22,39 +22,20 @@ module.exports = function (chai, utils) {
   });
 
   utils.addProperty(Assertion.prototype, 'jwt', function () {
+    const decoded = jwt.decode(this._obj);
+
     this.assert(
-        !!jwt.decode(this._obj),
+        !!decoded,
         'expected #{this} to be a valid jwt',
         'expected #{this} to not be a valid jwt'
     );
+
+    utils.flag(this, 'object', decoded);
   });
 
   Assertion.addMethod('claim', function (key, value) {
-    let token = this._obj;
-    let decoded;
+    const decodedToken = this._obj;
 
-    try {
-      decoded = jwt.decode(token);
-    } catch (e) {}
-
-    const hasValue = arguments.length > 1;
-    const actualValue = decoded && decoded[key];
-
-    if (hasValue) {
-      this.assert(
-        actualValue === value,
-        `expected #{this} to have claim ${key} with value #{exp} but got #{act}`,
-        "expected #{this} to not have claim #{act}",
-        value,
-        actualValue
-      );
-    } else {
-
-      this.assert(
-        decoded && decoded.hasOwnProperty(key),
-        `expected #{this} to have claim ${key} but don't have it`,
-        `expected #{this} to not have claim ${key} but has it`
-      );
-    }
+    this.to.have.property.apply(this, arguments);
   });
 };
