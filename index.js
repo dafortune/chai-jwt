@@ -21,7 +21,7 @@ module.exports = function (chai, utils) {
     );
   });
 
-  utils.addProperty(Assertion.prototype, 'jwt', function () {
+  Assertion.addMethod('jwt', function () {
     const decoded = jwt.decode(this._obj);
 
     this.assert(
