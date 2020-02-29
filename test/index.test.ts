@@ -1,9 +1,8 @@
 'use strict';
+import { expect, use } from 'chai';
+import chaiJWT from '../index';
 
-const chai = require('chai');
-const expect = chai.expect;
-
-chai.use(require('../index'));
+use(chaiJWT);
 
 describe('chai-jwt', function() {
   const validJWT = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzY29wZSI6InVwZGF0ZTpzb21ldGhpbmciLCJleHAiOjE0NzA3NjE3ODEsImlhdCI6MTQ3MDc2MDc5M30.1b4RC22Kpx4X4GWXU-Wgsk4IbeRGVD7tNW-tM-LzkVE';
