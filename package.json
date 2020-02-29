@@ -2,9 +2,12 @@
   "name": "chai-jwt",
   "version": "2.0.0",
   "description": "JWT helpers for chai",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha -r ts-node/register test/*",
+    "build": "tsc",
+    "prepublish": "tsc"
   },
   "repository": {
     "type": "git",
@@ -21,7 +24,15 @@
   },
   "homepage": "https://github.com/dafortune/chai-jwt#readme",
   "devDependencies": {
+    "@types/chai": "^4.2.9",
+    "@types/jsonwebtoken": "^8.3.8",
     "chai": "^3.5.0",
-    "mocha": "^3.0.2"
+    "mocha": "^3.0.2",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@types/mocha": "^7.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "ts-node": "^8.6.2"
   }
 }
